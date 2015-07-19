@@ -1,6 +1,11 @@
-/bin/
+/.bundle
+/db/*.sqlite3
+/db/*.sqlite3-journal
+/log/*
+!/log/.keep
+/tmp
+/bin
 .DS_Store
-tmp/
-.bundle/
+.powrc
 *.sw[p,o,n]
 *~
