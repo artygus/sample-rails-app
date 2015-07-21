@@ -1,8 +1,9 @@
 class TripsController < ApplicationController
+  before_filter :require_login
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
 
   def index
-    @trips = Trip.all
+    @trips = current_user.trips
   end
 
   def show
@@ -17,6 +18,7 @@ class TripsController < ApplicationController
 
   def create
     @trip = Trip.new(trip_params)
+    @trip.user_id = current_user.id
 
     respond_to do |format|
       if @trip.save
@@ -50,11 +52,12 @@ class TripsController < ApplicationController
   end
 
   private
-    def set_trip
-      @trip = Trip.find(params[:id])
-    end
 
-    def trip_params
-      params.require(:trip).permit(:destination, :start_date, :end_date, :comment)
-    end
+  def set_trip
+    @trip = current_user.trips.find(params[:id])
+  end
+
+  def trip_params
+    params.require(:trip).permit(:destination, :start_date, :end_date, :comment)
+  end
 end

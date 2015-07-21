@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
   resources :trips
+
+  constraints Clearance::Constraints::SignedIn.new do
+    root to: redirect('/trips', status: 302), as: :signed_in_root
+  end
+
+  constraints Clearance::Constraints::SignedOut.new do
+    root to: 'clearance/sessions#new'
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

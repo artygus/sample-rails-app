@@ -4,6 +4,7 @@ class Trip < ActiveRecord::Base
   validates :destination, presence: true
   validates :start_date, presence: true
   validates :end_date, presence: true
+  validates :user_id, presence: true
 
   validate :start_date_cannot_be_greater_than_end_date
 
