@@ -1,0 +1,27 @@
+%h1 Listing trips
+
+%table
+  %thead
+    %tr
+      %th Destination
+      %th Start date
+      %th End date
+      %th Comment
+      %th
+      %th
+      %th
+
+  %tbody
+    - @trips.each do |trip|
+      %tr
+        %td= trip.destination
+        %td= trip.start_date
+        %td= trip.end_date
+        %td= trip.comment
+        %td= link_to 'Show', trip
+        %td= link_to 'Edit', edit_trip_path(trip)
+        %td= link_to 'Destroy', trip, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Trip', new_trip_path
