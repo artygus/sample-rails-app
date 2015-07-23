@@ -7,4 +7,15 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
+    - if current_user
+      %header
+        - if current_user.admin?
+          = link_to 'Trips', trips_path
+          \|
+          = link_to 'Users', admin_users_path
+          \|
+        = link_to 'Sign Out', sign_out_path, method: :delete
+        %hr
+
+
     = yield
