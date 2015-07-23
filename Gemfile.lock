@@ -1,6 +1,6 @@
 GIT
-  remote: git://github.com/waymondo/turboboost.git
-  revision: dee24e05d09021c4df0657323725df6fd3f839d3
+  remote: git://github.com/artygus/turboboost.git
+  revision: 8e457ecbe03c6918488f42519e2a7ea4e45868bd
   specs:
     turboboost (0.0.12)
       coffee-rails

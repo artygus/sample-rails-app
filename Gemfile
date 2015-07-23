@@ -11,7 +11,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'haml-rails', '~> 0.9'
 gem 'clearance'
 gem 'nprogress-rails'
-gem 'turboboost', github: 'waymondo/turboboost'
+gem 'turboboost', github: 'artygus/turboboost'
 
 group :development, :test do
   gem 'byebug'
