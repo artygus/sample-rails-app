@@ -12,5 +12,8 @@
   .field
     = f.label :password
     = f.password_field :password
+  .field
+    = f.label :rank
+    = f.select :rank, User::RANKS
   .actions
     = f.submit 'Save'

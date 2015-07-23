@@ -5,6 +5,7 @@
     %tr
       %th Email
       %th Registered
+      %th Rank
       %th
       %th
       %th
@@ -13,6 +14,7 @@
     - @users.each do |user|
       %tr
         %td= user.email
+        %td= user.rank
         %td= user.created_at.to_date
         %td= link_to 'Show', admin_user_path(user)
         %td= link_to 'Edit', edit_admin_user_path(user)
