@@ -11,6 +11,13 @@ RSpec.describe TripsController, type: :controller do
       end
     end
 
+    describe "GET #travelplan" do
+      it "block unauthenticated access" do
+        get :travelplan
+        expect(response).to redirect_to(sign_in_path)
+      end
+    end
+
     describe "GET #search" do
       it "block unauthenticated access" do
         get :search
@@ -100,6 +107,18 @@ RSpec.describe TripsController, type: :controller do
         trip_3 = Trip.create! valid_attributes.merge(start_date: Time.now.to_date + 3.days)
         get :index
         expect(assigns(:trips)).to eq([trip_3, trip_1, trip_2])
+      end
+    end
+
+    describe "GET #travelplan" do
+      it "assigns next month trips to @trips" do
+        trip_1 = Trip.create! valid_attributes
+        trip_2 = Trip.create! valid_attributes.merge(start_date: Time.now.beginning_of_month.next_month, end_date: Time.now.beginning_of_month.next_month + 3.days)
+        trip_3 = Trip.create! valid_attributes.merge(start_date: Time.now.end_of_month.next_month, end_date: Time.now.end_of_month.next_month + 3.days)
+        trip_4 = Trip.create! valid_attributes.merge(start_date: (Time.now + 2.months), end_date: (Time.now + 3.months))
+        trip_5 = Trip.create! valid_attributes.merge(start_date: Time.now.next_month.change(day: 10), end_date: Time.now.next_month + 2.weeks)
+        get :travelplan
+        expect(assigns(:trips)).to eq([trip_3, trip_5, trip_2])
       end
     end
 
