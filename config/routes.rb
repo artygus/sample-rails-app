@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :trips do
     collection do
+      get :travelplan
       post :search
     end
   end

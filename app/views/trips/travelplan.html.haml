@@ -1,0 +1,16 @@
+%h1= "Travel plan for #{@from.strftime('%B, %Y')}" 
+
+%table{width: '100%', border: '1'}
+  %thead
+    %tr
+      %th Destination
+      %th Start date
+      %th End date
+      %th Comment
+  %tbody
+    - @trips.each do |trip|
+      %tr
+        %td= trip.destination
+        %td= trip.start_date
+        %td= trip.end_date
+        %td= trip.comment 

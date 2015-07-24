@@ -3,11 +3,22 @@ class TripsController < ApplicationController
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
 
   def index
-    @trips = current_user.trips.order(start_date: :desc)
+    @trips = current_user.trips
+  end
+
+  def travelplan
+    @from = Time.now.beginning_of_month.next_month.to_date
+    to = Time.now.end_of_month.next_month.to_date
+    @trips = current_user.trips.where('start_date BETWEEN ? AND ?', @from, to)
+
+    respond_to do |format|
+      format.html { render :travelplan, layout: 'print', locals: {trips: @trips} }
+      format.json { render :index }
+    end
   end
 
   def search
-    @trips = current_user.trips.order(start_date: :desc)
+    @trips = current_user.trips
 
     if params[:q].present?
       db_query = "%#{params[:q]}%"
