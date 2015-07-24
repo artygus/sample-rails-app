@@ -15,7 +15,7 @@ class TripsController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { render partial: 'trips/list', locals: {trips: @trips} }
+      format.html { render :search, layout: false, locals: {trips: @trips} }
       format.json { render :index }
     end
   end
