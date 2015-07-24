@@ -6,6 +6,20 @@ class TripsController < ApplicationController
     @trips = current_user.trips.order(start_date: :desc)
   end
 
+  def search
+    @trips = current_user.trips.order(start_date: :desc)
+
+    if params[:q].present?
+      db_query = "%#{params[:q]}%"
+      @trips = @trips.where('comment LIKE ? OR destination LIKE ?', db_query, db_query)
+    end
+
+    respond_to do |format|
+      format.html { render partial: 'trips/list', locals: {trips: @trips} }
+      format.json { render :index }
+    end
+  end
+
   def show
   end
 

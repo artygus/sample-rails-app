@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :trips
+  resources :trips do
+    collection do
+      post :search
+    end
+  end
+
 
   constraints Clearance::Constraints::SignedIn.new { |user| user.admin? } do
     namespace :admin do

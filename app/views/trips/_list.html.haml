@@ -1,0 +1,11 @@
+- trips.each do |trip|
+  - starts_in = (trip.start_date - Time.now.to_date).to_i
+  %tr
+    %td= trip.destination
+    %td= trip.start_date
+    %td= trip.end_date
+    %td= starts_in >= 0 ? "#{starts_in}d" : ''
+    %td= truncate(trip.comment, length: 15)
+    %td= link_to 'Show', trip
+    %td= link_to 'Edit', edit_trip_path(trip)
+    %td= link_to 'Destroy', trip, :method => :delete, :data => { :confirm => 'Are you sure?' }, turboboost: true
