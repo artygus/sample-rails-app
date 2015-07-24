@@ -103,7 +103,7 @@ RSpec.describe TripsController, type: :controller do
       end
     end
 
-    describe "POST #search" do
+    describe "GET #search" do
       before :each do
         @trip_1 = Trip.create! valid_attributes.merge(start_date: Time.now.to_date + 1.day)
         @trip_2 = Trip.create! valid_attributes.merge(start_date: Time.now.to_date + 5.days, comment: 'charter')
@@ -112,18 +112,18 @@ RSpec.describe TripsController, type: :controller do
       end
 
       it "assigns all trips as @trips if query is empty" do
-        post :search
+        get :search
         expect(assigns(:trips)).to eq([@trip_2, @trip_4, @trip_1, @trip_3])
       end
 
       it "looks in destination field" do
-        post :search, q: 'chart'
+        get :search, q: 'chart'
         expect(assigns(:trips)).to eq([@trip_2])
       end
 
       it "looks in comment field" do
         trip = Trip.create! valid_attributes
-        post :search, q: 'zil'
+        get :search, q: 'zil'
         expect(assigns(:trips)).to eq([@trip_3])
       end
     end
