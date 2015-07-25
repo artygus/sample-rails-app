@@ -16,3 +16,6 @@
 //= require turboboost/turboboost
 //= require nprogress
 //= require nprogress-turbolinks
+//= require bootstrap.alerts.min
+
+NProgress.configure({showSpinner: false})

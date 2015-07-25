@@ -1,11 +1,10 @@
-.password-reset
-  %h2= t(".title")
-  %p= t(".description")
-  = form_for :password_reset,                                        |
-    url: user_password_path(@user, token: @user.confirmation_token), |
-    html: { method: :put }, turboboost: true do |form|               |
-    .password-field
-      = form.label :password
-      = form.password_field :password
-    .submit-field
-      = form.submit
+%h2= t(".title")
+%p= t(".description")
+
+.row
+  .col-sm-5
+    = bootstrap_form_for :password_reset,                              |
+      url: user_password_path(@user, token: @user.confirmation_token), |
+      html: { method: :put }, turboboost: true do |form|               |
+        = form.password_field :password
+        = form.submit, class: 'btn btn-primary'

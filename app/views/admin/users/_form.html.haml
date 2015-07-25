@@ -1,19 +1,5 @@
-= form_for [:admin, @user], turboboost: true do |f|
-  - if @user.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
-      %ul
-        - @user.errors.full_messages.each do |msg|
-          %li= msg
-
-  .field
-    = f.label :email
-    = f.text_field :email
-  .field
-    = f.label :password
-    = f.password_field :password
-  .field
-    = f.label :rank
-    = f.select :rank, User::RANKS
-  .actions
-    = f.submit 'Save'
+= bootstrap_form_for [:admin, @user], turboboost: true do |f|
+  = f.text_field :email
+  = f.password_field :password
+  = f.select :rank, User::RANKS
+  = f.submit 'Save', class: 'btn btn-primary'

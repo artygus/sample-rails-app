@@ -1,17 +1,27 @@
-%p#notice= notice
+- if notice
+  .alert.alert-info
+    = notice
 
 %p
-  %b Destination:
+  %strong Destination
+  %br
   = @trip.destination
+
 %p
-  %b Start date:
+  %strong Start date
+  %br
   = @trip.start_date
+
 %p
-  %b End date:
+  %strong End date
+  %br
   = @trip.end_date
-%p
-  %b Comment:
-  = @trip.comment
+
+- if @trip.comment.present?
+  %p
+    %strong Comment
+    %br
+    = @trip.comment
 
 = link_to 'Edit', edit_trip_path(@trip)
 \|

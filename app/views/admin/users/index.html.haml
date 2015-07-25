@@ -1,6 +1,10 @@
 %h1 Listing users
 
-%table
+- if notice
+  .alert.alert-info
+    = notice
+
+%table.table.table-hover
   %thead
     %tr
       %th Email
@@ -19,7 +23,5 @@
         %td= link_to 'Show', admin_user_path(user)
         %td= link_to 'Edit', edit_admin_user_path(user)
         %td= link_to 'Destroy', admin_user_path(user), :method => :delete, :data => { :confirm => 'Are you sure?' }, turboboost: true
-
-%br
 
 = link_to 'New User', new_admin_user_path

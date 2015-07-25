@@ -1,6 +1,15 @@
 - if notice
-  %p.field_with_errors= notice
+  %br
+  .alert.alert-danger
+    = notice
 
-.sign-in
-  %h2= t(".title")
-  = render partial: '/sessions/form'
+%h2= t(".title")
+.row
+  .col-sm-5
+    = render partial: '/sessions/form'
+
+%br
+- if Clearance.configuration.allow_sign_up?
+  = link_to t(".sign_up"), sign_up_path
+\|
+= link_to t(".forgot_password"), new_password_path

@@ -1,11 +1,11 @@
-.password-reset
-  %h2= t(".title")
-  %p= t(".description")
-  = form_for :password, url: passwords_path, turboboost: true do |form|
-    .text-field
-      = form.label :email
-      = form.text_field :email, type: 'email'
-    .submit-field
-      = form.submit
-  .other-links
-    = link_to t("sessions.new.title"), sign_in_path
+%h2= t(".title")
+%p= t(".description")
+
+.row
+  .col-sm-5
+    = bootstrap_form_for :password, url: passwords_path, turboboost: true do |form|
+      = form.text_field :email, type: :email
+      = form.submit class: 'btn btn-primary'
+
+%br
+= link_to t("sessions.new.title"), sign_in_path

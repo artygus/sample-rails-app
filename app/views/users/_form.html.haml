@@ -1,6 +1,4 @@
-.text-field
-  = form.label :email
-  = form.text_field :email, type: 'email'
-.password-field
-  = form.label :password
-  = form.password_field :password
+= bootstrap_form_for @user, turboboost: true do |form|
+    = form.text_field :email, type: :email
+    = form.password_field :password
+    = form.submit class: 'btn btn-primary'

@@ -1,11 +1,16 @@
 %h1 Listing trips
 
-- if @trips.size > 2
-  = form_tag search_trips_path, method: :get, authenticity_token: false, id: 'trips-search' do
-    = text_field_tag :q, '', placeholder: 'Search'
-    = button_tag :Go
+- if notice
+  .alert.alert-info.alert-dismissible
+    %button.close{'data-dismiss' => 'alert'} &times;
+    = notice
 
-%table#trips-list
+- if @trips.size > 2
+  = form_tag search_trips_path, method: :get, authenticity_token: false, id: 'trips-search', class: 'form-inline' do
+    = text_field_tag :q, '', class: 'form-control', placeholder: 'Search'
+    = button_tag :Go, class: 'btn btn-default'
+
+%table#trips-list.table.table-hover
   %thead
     %tr
       %th Destination
@@ -18,8 +23,6 @@
       %th
   %tbody
     = render partial: 'list', locals: {trips: @trips, empty_message: 'No trips yet'}
-
-%br
 
 = link_to 'New Trip', new_trip_path
 \|

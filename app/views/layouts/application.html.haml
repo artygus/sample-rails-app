@@ -9,12 +9,17 @@
   %body
     - if current_user
       %header
-        - if current_user.admin?
-          = link_to 'Trips', trips_path
-          \|
-          = link_to 'Users', admin_users_path
-          \|
-        = link_to 'Sign Out', sign_out_path, method: :delete, turboboost: true
-        %hr
+        %nav.navbar.navbar-default.navbar-static-top
+          .container
+            %ul.nav.navbar-nav.pull-right
+              %li
+                = link_to 'Sign Out', sign_out_path, method: :delete, turboboost: true
+            %ul.nav.navbar-nav
+              - if current_user.admin?
+                %li
+                  = link_to 'Trips', trips_path
+                %li
+                  = link_to 'Users', admin_users_path
 
-    = yield
+    .container
+      = yield

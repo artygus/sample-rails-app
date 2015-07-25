@@ -12,6 +12,7 @@ gem 'haml-rails', '~> 0.9'
 gem 'clearance'
 gem 'nprogress-rails'
 gem 'turboboost', github: 'artygus/turboboost'
+gem 'bootstrap_form'
 
 group :development, :test do
   gem 'byebug'
